@@ -1,1 +1,1 @@
-OpenGL
+Grpahics using OpenGL
