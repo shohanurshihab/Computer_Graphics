@@ -9,6 +9,8 @@
 #include "sky.h"
 #include "clouds.h"
 #include "mountain.h"
+#include "boats.h"
+#include "birds.h"
 
 
 void display()
@@ -46,35 +48,42 @@ void display()
     left_mountain();
     right_mountain();
 
+    //boats
+  //glColor3f(0.0,1.0,0.0);
+  boat1();
+  boat2();
+
+  //birds
+  birds();
+
+  glutSwapBuffers();
 	glFlush();
 
 }
-void reshape(int w,int h)
+
+
+void init()
 {
-    glViewport(0,0,(GLsizei)w,(GLsizei)h);
-    glMatrixMode(GL_PROJECTION);
+    glClearColor(1.0,1.0,1.0,0.0);
+      glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(-10,10,-10,10);
     glMatrixMode(GL_MODELVIEW);
 }
 
-void init()
-{
-    glClearColor(1.0,1.0,1.0,0.0);
-}
-
 int main(int argc,char**argv)
 {
     glutInit(&argc,argv);
-    glutInitDisplayMode(GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
 
     glutInitWindowPosition(200,100);
     glutInitWindowSize(960,540);
 
     glutCreateWindow("Village");
-
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
     init();
+    glutDisplayFunc(display);
+    glutIdleFunc(display);
+
     glutMainLoop();
+
 }
